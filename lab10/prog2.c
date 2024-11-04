@@ -6,21 +6,7 @@ struct node {
     struct node *left, *right;
 };
 
-struct stack {
-    struct node *da[100] ;
-    int top ;
-};
 
-void push(struct stack *st, struct node *da){
-    st->top++ ;
-    st->da[st->top] = da ;
-}
-
-int pop(struct stack *st){
-    int a = st->da[st->top]->data ;
-    st->top-- ;
-    return a ;
-}
 
 struct node* createNode(int data) {
     struct node *newNode = (struct node*)malloc(sizeof(struct node));
