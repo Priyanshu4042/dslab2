@@ -9,12 +9,6 @@ struct Node {
 };
 
 
-struct Node* createNode(int data);
-void insertIntoCircularList(struct Node** head, int newData);
-void deleteFromCircularList(struct Node** head, int key);
-void traverseCircularList(struct Node* head);
-
-
 struct Node* createNode(int data) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->data = data;
