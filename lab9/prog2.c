@@ -1,20 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Define the structure for a polynomial term
+
 struct Term {
-    int coeff; // Coefficient
-    int exp;   // Exponent
-    struct Term* next; // Pointer to the next term
+    int coeff; 
+    int exp;   
+    struct Term* next;
 };
 
-// Function prototypes
-struct Term* createTerm(int coeff, int exp);
-void insertTerm(struct Term** poly, int coeff, int exp);
-struct Term* addPolynomials(struct Term* poly1, struct Term* poly2);
-void printPolynomial(struct Term* poly);
 
-// Function to create a new term
 struct Term* createTerm(int coeff, int exp) {
     struct Term* newTerm = (struct Term*)malloc(sizeof(struct Term));
     newTerm->coeff = coeff;
@@ -23,7 +17,6 @@ struct Term* createTerm(int coeff, int exp) {
     return newTerm;
 }
 
-// Function to insert a term into the polynomial
 void insertTerm(struct Term** poly, int coeff, int exp) {
     struct Term* newTerm = createTerm(coeff, exp);
     if (*poly == NULL || (*poly)->exp < exp) {
@@ -35,8 +28,8 @@ void insertTerm(struct Term** poly, int coeff, int exp) {
             current = current->next;
         }
         if (current->exp == exp) {
-            current->coeff += coeff; // Combine like terms
-            free(newTerm); // Free the new term if it's combined
+            current->coeff += coeff;
+            free(newTerm);
         } else {
             newTerm->next = current->next;
             current->next = newTerm;
@@ -44,7 +37,7 @@ void insertTerm(struct Term** poly, int coeff, int exp) {
     }
 }
 
-// Function to add two polynomials
+
 struct Term* addPolynomials(struct Term* poly1, struct Term* poly2) {
     struct Term* result = NULL;
     struct Term* current1 = poly1;
@@ -72,7 +65,6 @@ struct Term* addPolynomials(struct Term* poly1, struct Term* poly2) {
     return result;
 }
 
-// Function to print the polynomial
 void printPolynomial(struct Term* poly) {
     if (poly == NULL) {
         printf("0\n");
@@ -89,17 +81,15 @@ void printPolynomial(struct Term* poly) {
     printf("\n");
 }
 
-// Main function
 int main() {
     struct Term* poly1 = NULL;
     struct Term* poly2 = NULL;
 
-    // Inserting terms into the first polynomial (e.g., 3x^2 + 5x + 6)
     insertTerm(&poly1, 3, 2);
     insertTerm(&poly1, 5, 1);
     insertTerm(&poly1, 6, 0);
 
-    // Inserting terms into the second polynomial (e.g., 4x^2 + 2x + 1)
+
     insertTerm(&poly2, 4, 2);
     insertTerm(&poly2, 2, 1);
     insertTerm(&poly2, 1, 0);
@@ -110,7 +100,7 @@ int main() {
     printf("Polynomial 2: ");
     printPolynomial(poly2);
 
-    // Adding the two polynomials
+
     struct Term* result = addPolynomials(poly1, poly2);
     
     printf("Resultant Polynomial: ");
