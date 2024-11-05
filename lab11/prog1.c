@@ -77,7 +77,7 @@ struct node* delete(struct node *root, int item) {
     } else if (item > root->data) {
         root->right = delete(root->right, item);
     } else {
-        // Node with only one child or no child
+        
         if (root->left == NULL) {
             struct node *temp = root->right;
             free(root);
@@ -88,10 +88,10 @@ struct node* delete(struct node *root, int item) {
             return temp;
         }
 
-        // Node with two children: Get the inorder successor (smallest in the right subtree)
+       
         struct node *temp = minValueNode(root->right);
-        root->data = temp->data; // Copy the inorder successor's content to this node
-        root->right = delete(root->right, temp->data); // Delete the inorder successor
+        root->data = temp->data; 
+        root->right = delete(root->right, temp->data);
     }
     return root;
 }
